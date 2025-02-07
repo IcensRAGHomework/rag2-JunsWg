@@ -23,9 +23,10 @@ def hw02_2(q2_pdf):
         text += docs[i].page_content
         if i != len(docs)-1:
             text +='\n'
-    text = re.sub(r'(\n[ \t]*第[^\n]+章[^\n]*\n)', r'\n\n\t\1', text)
+    text = re.sub(r'(\n[ ]*第[\s]*[一二三四五六七八九十\d]+[\s]*章[^\n]*\n)', r'\n\n\t\1', text)
+    #print(text)
+    text = re.sub(r'(\n[ ]*第[\s]*[一二三四五六七八九十\d-]+[\s]*條[^\n]*\n)', r'\n\n\t\1', text)
     print(text)
-    text = re.sub(r'(\n[ \t]*第.*條[^\n]*\n)', r'\n\n\t\1', text)
     text_splitter = RecursiveCharacterTextSplitter(separators=['\n\n\t'],
                                                    chunk_size=10,
                                                    chunk_overlap=0)
